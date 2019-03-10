@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    
+
     <TextView
         android:id="@+id/textMemoName"
         android:layout_width="wrap_content"
@@ -14,8 +14,44 @@
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
-        android:textSize="20sp"
+        android:textSize="22sp"
+        android:textStyle="bold"
         android:text="Memo Name" />
+
+    <TextView
+        android:id="@+id/textPriority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_below="@id/textMemoName"
+        android:text="Priority:" />
+
+    <TextView
+        android:id="@+id/textPriorityLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@id/textMemoName"
+        android:layout_toRightOf="@id/textPriority"
+        android:text="Level" />
+
+    <TextView
+        android:id="@+id/textMemoPreview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_below="@id/textPriority"
+        android:maxLines="3"
+        android:minLines="3"
+        android:ellipsize="end"
+        android:textSize="20sp"
+        android:text="Memo Preview" />
 
     <TextView
         android:id="@+id/textCreated"
@@ -25,7 +61,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
-        android:layout_below="@+id/textMemoName"
+        android:layout_below="@id/textMemoPreview"
         android:text="Created:" />
 
     <TextView
@@ -34,7 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
-        android:layout_below="@id/textMemoName"
+        android:layout_below="@id/textMemoPreview"
         android:layout_toRightOf="@id/textCreated"
         android:text="Date Created" />
 
@@ -44,10 +80,31 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
-        android:layout_below="@id/textMemoName"
+        android:layout_below="@id/textMemoPreview"
         android:layout_toRightOf="@id/textDateCreated"
-        android:text="Modified:"/>
+        android:text="Modified:" />
 
+    <TextView
+        android:id="@+id/textDateModified"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_below="@id/textMemoPreview"
+        android:layout_toRightOf="@id/textModified"
+        android:text="Date Modified" />
 
+    <CheckBox
+        android:id="@+id/checkboxDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignTop="@id/textMemoName"
+        android:layout_alignBottom="@id/textPriority"
+        />
 
 </RelativeLayout>
