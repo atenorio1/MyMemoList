@@ -11,6 +11,9 @@ public class MemoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memo);
+
+        initListButton();
+        initSettingsButton();
     }
 
     // Method that initializes the list image button
