@@ -1,5 +1,6 @@
 package com.example.mymemolist;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,9 +8,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -24,6 +29,8 @@ public class MemoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_memo);
         initTextChangedEvents();
         initSaveButton();
+        initChangePriority();
+        initChangePriorityOnClick();
 
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
@@ -92,7 +99,7 @@ public class MemoActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                //hideKeyboard();
+                hideKeyboard();
                 boolean wasSuccessful = false;
                 MemoDataSource ds = new MemoDataSource(MemoActivity.this);
                 try {
@@ -116,6 +123,52 @@ public class MemoActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
 
                 }
+            }
+        });
+    }
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        EditText editMemo = (EditText) findViewById(R.id.editMemo);
+        imm.hideSoftInputFromWindow(editMemo.getWindowToken(), 0);
+    }
+    private void initChangePriority() {
+        String sortpriority = getSharedPreferences("MyMemoPreferences", Context.MODE_PRIVATE).getString("sortpriority", "regular");
+
+        RadioButton rbLow = (RadioButton) findViewById(R.id.radioLow);
+        RadioButton rbMedium = (RadioButton) findViewById(R.id.radioMedium);
+        RadioButton rbHigh = (RadioButton) findViewById(R.id.radioHigh);
+
+            if (sortpriority.equalsIgnoreCase("low")) {
+                rbLow.setChecked(true);
+            } else if (sortpriority.equalsIgnoreCase("medium")) {
+                rbMedium.setChecked(true);
+            }else {
+                rbHigh.setChecked(true);
+            }
+    }
+
+
+    private void initChangePriorityOnClick() {
+        final RelativeLayout r = (RelativeLayout)findViewById(R.id.activity_memo);
+        RadioGroup rgSortByPrio = (RadioGroup) findViewById(R.id.radioGroupSortByPriority);
+        rgSortByPrio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup arg0, int arg1) {
+                RadioButton rbLow = (RadioButton) findViewById(R.id.radioLow);
+                RadioButton rbMed = (RadioButton) findViewById(R.id.radioMedium);
+                RadioButton rbHigh = (RadioButton) findViewById(R.id.radioHigh);
+
+                if (rbLow.isChecked()) {
+                    getSharedPreferences("MyMemoPreferences", Context.MODE_PRIVATE).edit() .putString("sortpriority", "low").commit();
+                }
+                else if (rbMed.isChecked()) {
+                    getSharedPreferences("MyMemoPreferences", Context.MODE_PRIVATE).edit().putString("sortpriority", "medium").commit();
+                }
+                else {
+                    getSharedPreferences("MyMemoPreferences", Context.MODE_PRIVATE).edit().putString("sortpriority", "high").commit();
+                }
+
             }
         });
     }
