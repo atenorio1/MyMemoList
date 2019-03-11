@@ -104,6 +104,9 @@
         android:layout_marginTop="15dp"
         android:layout_marginRight="20dp"
         android:layout_alignTop="@id/textMemoName"
-        android:layout_alignBottom="@id/textPriority"/>
+        android:layout_alignBottom="@id/textPriority"
+        android:visibility="invisible"
+        android:focusable="false"
+        android:focusableInTouchMode="false" />
 
 </RelativeLayout>

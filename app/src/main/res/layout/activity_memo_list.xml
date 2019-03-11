@@ -7,17 +7,66 @@
     android:layout_height="match_parent"
     tools:context="com.example.mymemolist.MyMemoList">
 
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:background="@color/toolbarcolor">
+
+        <Button
+            android:id="@+id/buttonDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:text="Delete" />
+
+        <Button
+            android:id="@+id/buttonDeleteSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="Delete Selected"
+            android:visibility="invisible"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
+
+    </RelativeLayout>
+
+
     <ListView
         android:id="@+id/lvMemo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
+        android:layout_above="@id/navbar"
+        android:layout_below="@id/toolbar"
         android:background="@color/legalPadYellow"
         android:divider="#4169e1"
-        android:dividerHeight="1dp"
-        android:layout_above="@id/navbar" >
+        android:dividerHeight="1dp" >
     </ListView>
+
+    <ImageButton
+        android:id="@+id/imagebuttonAdd"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_above="@+id/navbar"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/image_button_add_round_background"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/addnewmemo" />
 
     <RelativeLayout
         android:id="@+id/navbar"
@@ -47,6 +96,5 @@
             app:srcCompat="@drawable/settings" />
 
     </RelativeLayout>
-
 
 </RelativeLayout>
