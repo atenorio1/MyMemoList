@@ -39,8 +39,8 @@ public class MemoDataSource {
             initialValues.put("memoText", c.getMemoData());
             initialValues.put("memoPriority", c.getMemoPriority());
 
+            didSucceed = database.insertOrThrow("memo1", null, initialValues) > 0;
 
-            didSucceed = database.insert("memo", null, initialValues) > 0;
         }
         catch (Exception e) {
             //Do nothing -will return false if there is an exception

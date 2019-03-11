@@ -24,14 +24,19 @@ public class MemoActivity extends AppCompatActivity {
     private Memo currentMemo;
     String rbValue;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /*RadioButton rbLow = (RadioButton) findViewById(R.id.radioLow);
+        RadioButton rbMed = (RadioButton) findViewById(R.id.radioMedium);
+        RadioButton rbHigh = (RadioButton) findViewById(R.id.radioHigh);*/
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memo);
         initTextChangedEvents();
         initSaveButton();
-        initChangePriority();
-        initChangePriorityOnClick();
+        //initChangePriority();
+        //initChangePriorityOnClick();
         initListButton();
         initSettingsButton();
 
@@ -42,6 +47,19 @@ public class MemoActivity extends AppCompatActivity {
         else {
             currentMemo = new Memo();
         }
+       /* if (rbLow.isChecked()) {
+            rbValue= "low";
+            currentMemo.setMemoPriority(rbValue);
+
+        }
+        else if (rbMed.isChecked()) {
+            rbValue= "medium";
+            currentMemo.setMemoPriority(rbValue);
+        }
+        else {
+            rbValue= "high";
+            currentMemo.setMemoPriority(rbValue);
+        }*/
     }
 
     // Method that initializes the list image button
@@ -77,6 +95,15 @@ public class MemoActivity extends AppCompatActivity {
 
         EditText editMemo = (EditText) findViewById(R.id.editMemo);
         editMemo.setText(currentMemo.getMemoData());
+        /*String chkMemo = currentMemo.getMemoPriority();
+        if(chkMemo == "low"){
+            rbLow.setChecked(true);
+        }else if(chkMemo == "medium"){
+            rbMed.setChecked(true);
+        }else{
+            rbHigh.setChecked(true);
+
+        }*/
 
     }
     private void initTextChangedEvents() {
@@ -97,6 +124,8 @@ public class MemoActivity extends AppCompatActivity {
         });
     }
     private void initSaveButton() {
+
+
         Button saveButton = (Button) findViewById(R.id.buttonSave);
         saveButton.setOnClickListener(new View.OnClickListener() {
 
@@ -134,7 +163,7 @@ public class MemoActivity extends AppCompatActivity {
         EditText editMemo = (EditText) findViewById(R.id.editMemo);
         imm.hideSoftInputFromWindow(editMemo.getWindowToken(), 0);
     }
-    private void initChangePriority() {
+    /*private void initChangePriority() {
         String sortpriority = getSharedPreferences("MyMemoPreferences", Context.MODE_PRIVATE).getString("sortpriority", "regular");
 
         RadioButton rbLow = (RadioButton) findViewById(R.id.radioLow);
@@ -148,18 +177,18 @@ public class MemoActivity extends AppCompatActivity {
             }else {
                 rbHigh.setChecked(true);
             }
-    }
+    }*/
 
 
     private void initChangePriorityOnClick() {
         final RelativeLayout r = (RelativeLayout)findViewById(R.id.activity_memo);
         RadioGroup rgSortByPrio = (RadioGroup) findViewById(R.id.radioGroupSortByPriority);
         rgSortByPrio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            RadioButton rbLow = (RadioButton) findViewById(R.id.radioLow);
+            RadioButton rbMed = (RadioButton) findViewById(R.id.radioMedium);
+            RadioButton rbHigh = (RadioButton) findViewById(R.id.radioHigh);
             @Override
             public void onCheckedChanged(RadioGroup arg0, int arg1) {
-                RadioButton rbLow = (RadioButton) findViewById(R.id.radioLow);
-                RadioButton rbMed = (RadioButton) findViewById(R.id.radioMedium);
-                RadioButton rbHigh = (RadioButton) findViewById(R.id.radioHigh);
 
                 if (rbLow.isChecked()) {
                     rbValue= "low";
