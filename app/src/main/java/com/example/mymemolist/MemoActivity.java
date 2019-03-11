@@ -15,7 +15,7 @@ public class MemoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memo);
-        //initSaveButton();
+        initSaveButton();
     }
 
     // Method that initializes the list image button
@@ -37,15 +37,15 @@ public class MemoActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
-    /*private void initSaveButton() {
+    private void initSaveButton() {
         Button saveButton = (Button) findViewById(R.id.buttonSave);
         saveButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                hideKeyboard();
+                //hideKeyboard();
                 boolean wasSuccessful = false;
-                ContactDataSource ds = new ContactDataSource(ContactActivity.this);
+                MemoDataSource ds = new MemoDataSource(MemoActivity.this);
                 try {
                     ds.open();
 
@@ -69,5 +69,5 @@ public class MemoActivity extends AppCompatActivity {
                 }
             }
         });
-    }*/
+    }
 }
