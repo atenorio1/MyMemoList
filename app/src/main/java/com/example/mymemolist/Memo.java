@@ -5,7 +5,7 @@ public class Memo {
     private String memoData;
 
     public Memo(){
-
+        memoID = -1;
     }
 
     public int getMemoID() {
