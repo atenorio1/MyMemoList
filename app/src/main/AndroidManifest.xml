@@ -14,7 +14,7 @@
             android:name=".MemoActivity"
             android:label="@string/title_activity_memo"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MyMemoList">
+        <activity android:name=".MemoListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
