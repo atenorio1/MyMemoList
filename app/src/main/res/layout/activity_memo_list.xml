@@ -42,7 +42,6 @@
 
     </RelativeLayout>
 
-
     <ListView
         android:id="@+id/lvMemo"
         android:layout_width="match_parent"
