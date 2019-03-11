@@ -37,6 +37,7 @@ public class MemoDataSource {
             ContentValues initialValues = new ContentValues();
 
             initialValues.put("memoText", c.getMemoData());
+            initialValues.put("memoPriority", c.getMemoPriority());
 
 
             didSucceed = database.insert("memo", null, initialValues) > 0;
@@ -54,6 +55,7 @@ public class MemoDataSource {
             ContentValues updateValues = new ContentValues();
 
             updateValues.put("memoText", c.getMemoData());
+            updateValues.put("memoPriority", c.getMemoPriority());
 
             didSucceed = database.update("memo", updateValues, "_id=" + rowId, null) > 0;
         }
@@ -111,6 +113,7 @@ public class MemoDataSource {
                 newMemo = new Memo();                                          //1
                 newMemo.setMemoID(cursor.getInt(0));
                 newMemo.setMemoData(cursor.getString(1));
+                newMemo.setMemoPriority(cursor.getString(2));
 
 
                 memos.add(newMemo);
@@ -143,6 +146,7 @@ public class MemoDataSource {
         if (cursor.moveToFirst()) {
             memo.setMemoID(cursor.getInt(0));
             memo.setMemoData(cursor.getString(1));
+            memo.setMemoPriority(cursor.getString(2));
 
             cursor.close();
         }

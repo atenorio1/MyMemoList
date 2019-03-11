@@ -22,6 +22,7 @@ import android.widget.ToggleButton;
 
 public class MemoActivity extends AppCompatActivity {
     private Memo currentMemo;
+    String rbValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,8 @@ public class MemoActivity extends AppCompatActivity {
         initSaveButton();
         initChangePriority();
         initChangePriorityOnClick();
+        initListButton();
+        initSettingsButton();
 
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
@@ -73,8 +76,8 @@ public class MemoActivity extends AppCompatActivity {
         }
 
         EditText editMemo = (EditText) findViewById(R.id.editMemo);
-
         editMemo.setText(currentMemo.getMemoData());
+
     }
     private void initTextChangedEvents() {
         final EditText etMemo = (EditText) findViewById(R.id.editMemo);
@@ -152,7 +155,6 @@ public class MemoActivity extends AppCompatActivity {
         final RelativeLayout r = (RelativeLayout)findViewById(R.id.activity_memo);
         RadioGroup rgSortByPrio = (RadioGroup) findViewById(R.id.radioGroupSortByPriority);
         rgSortByPrio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-
             @Override
             public void onCheckedChanged(RadioGroup arg0, int arg1) {
                 RadioButton rbLow = (RadioButton) findViewById(R.id.radioLow);
@@ -160,13 +162,17 @@ public class MemoActivity extends AppCompatActivity {
                 RadioButton rbHigh = (RadioButton) findViewById(R.id.radioHigh);
 
                 if (rbLow.isChecked()) {
-                    getSharedPreferences("MyMemoPreferences", Context.MODE_PRIVATE).edit() .putString("sortpriority", "low").commit();
+                    rbValue= "low";
+                    currentMemo.setMemoPriority(rbValue);
+
                 }
                 else if (rbMed.isChecked()) {
-                    getSharedPreferences("MyMemoPreferences", Context.MODE_PRIVATE).edit().putString("sortpriority", "medium").commit();
+                    rbValue= "medium";
+                    currentMemo.setMemoPriority(rbValue);
                 }
                 else {
-                    getSharedPreferences("MyMemoPreferences", Context.MODE_PRIVATE).edit().putString("sortpriority", "high").commit();
+                    rbValue= "high";
+                    currentMemo.setMemoPriority(rbValue);
                 }
 
             }
