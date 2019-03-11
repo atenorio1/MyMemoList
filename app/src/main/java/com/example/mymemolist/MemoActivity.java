@@ -36,7 +36,7 @@ public class MemoActivity extends AppCompatActivity {
         initTextChangedEvents();
         initSaveButton();
         //initChangePriority();
-        //initChangePriorityOnClick();
+        initChangePriorityOnClick();
         initListButton();
         initSettingsButton();
 
@@ -47,7 +47,7 @@ public class MemoActivity extends AppCompatActivity {
         else {
             currentMemo = new Memo();
         }
-       /* if (rbLow.isChecked()) {
+       /*if (rbLow.isChecked()) {
             rbValue= "low";
             currentMemo.setMemoPriority(rbValue);
 
@@ -56,10 +56,13 @@ public class MemoActivity extends AppCompatActivity {
             rbValue= "medium";
             currentMemo.setMemoPriority(rbValue);
         }
-        else {
+        else if (rbMed.isChecked()) {
             rbValue= "high";
             currentMemo.setMemoPriority(rbValue);
-        }*/
+        }else{
+           rbValue= "low";
+           currentMemo.setMemoPriority(rbValue);
+       }*/
     }
 
     // Method that initializes the list image button
@@ -193,14 +196,16 @@ public class MemoActivity extends AppCompatActivity {
                 if (rbLow.isChecked()) {
                     rbValue= "low";
                     currentMemo.setMemoPriority(rbValue);
-
                 }
                 else if (rbMed.isChecked()) {
                     rbValue= "medium";
                     currentMemo.setMemoPriority(rbValue);
                 }
-                else {
+                else if (rbHigh.isChecked()){
                     rbValue= "high";
+                    currentMemo.setMemoPriority(rbValue);
+                }else {
+                    rbValue = "low";
                     currentMemo.setMemoPriority(rbValue);
                 }
 
