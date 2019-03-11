@@ -46,7 +46,6 @@ public class MemoSettingsActivity extends AppCompatActivity {
 
         RadioButton rbName = findViewById(R.id.radioName);
         RadioButton rbDateCreated = findViewById(R.id.radioDateCreated);
-        RadioButton rbDateModified = findViewById(R.id.radioDateModified);
         RadioButton rbPriority = findViewById(R.id.radioPriority);
 
         if (sortBy.equalsIgnoreCase("memoname"))
@@ -54,9 +53,6 @@ public class MemoSettingsActivity extends AppCompatActivity {
 
         else if (sortBy.equalsIgnoreCase("datecreated"))
             rbDateCreated.setChecked(true);
-
-        else if (sortBy.equalsIgnoreCase("datemodified"))
-            rbDateModified.setChecked(true);
 
         else
             rbPriority.setChecked(true);
@@ -77,16 +73,12 @@ public class MemoSettingsActivity extends AppCompatActivity {
         rgSortBy.setOnCheckedChangeListener((radioGroup, num) -> {
             RadioButton rbName = findViewById(R.id.radioName);
             RadioButton rbDateCreated = findViewById(R.id.radioDateCreated);
-            RadioButton rbDateModified = findViewById(R.id.radioDateModified);
 
             if (rbName.isChecked())
                 getSharedPreferences("MyMemoListPreferences", Context.MODE_PRIVATE).edit().putString("sortfield", "memoname").commit();
 
             else if (rbDateCreated.isChecked())
                 getSharedPreferences("MyMemoListPreferences", Context.MODE_PRIVATE).edit().putString("sortfield", "datecreated").commit();
-
-            else if (rbDateModified.isChecked())
-                getSharedPreferences("MyMemoListPreferences", Context.MODE_PRIVATE).edit().putString("sortfield", "datemodified").commit();
 
             else
                 getSharedPreferences("MyMemoListPreferences", Context.MODE_PRIVATE).edit().putString("sortfield", "priority").commit();

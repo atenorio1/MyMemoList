@@ -61,13 +61,6 @@
                     android:text="Date Created" />
 
                 <RadioButton
-                    android:id="@+id/radioDateModified"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Date Modified" />
-
-                <RadioButton
                     android:id="@+id/radioPriority"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
