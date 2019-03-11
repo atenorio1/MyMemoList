@@ -9,11 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MemoSettingsActivity"></activity>
         <activity
             android:name=".MemoActivity"
             android:label="@string/title_activity_memo"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".MemoSettingsActivity" />
         <activity android:name=".MemoListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
