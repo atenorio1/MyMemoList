@@ -12,6 +12,8 @@ import java.io.ByteArrayOutputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 
 public class MemoDataSource {
@@ -34,12 +36,16 @@ public class MemoDataSource {
     public boolean insertMemo(Memo c) {
         boolean didSucceed = false;
         try {
+            Date d = Calendar.getInstance().getTime();
+            SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+            String formattedDate = df.format(d);
             ContentValues initialValues = new ContentValues();
 
             initialValues.put("memoText", c.getMemoData());
             initialValues.put("memoPriority", c.getMemoPriority());
+            initialValues.put("memoDate", formattedDate);
 
-            didSucceed = database.insertOrThrow("memo1", null, initialValues) > 0;
+            didSucceed = database.insertOrThrow("memo2", null, initialValues) > 0;
 
         }
         catch (Exception e) {
