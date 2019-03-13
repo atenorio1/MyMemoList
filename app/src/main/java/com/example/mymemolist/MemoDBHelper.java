@@ -13,7 +13,7 @@ public class MemoDBHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_MEMO =
             "create table memo3" +
                     " (_id integer primary key autoincrement, "
-                    + "memoText text, memoPriority text, memoDate date, memoTitle text);";
+                        + "memoText text, memoPriority text, memoDate date, memoTitle text);";
 
     public MemoDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

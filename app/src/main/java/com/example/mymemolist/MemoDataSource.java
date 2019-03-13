@@ -36,15 +36,13 @@ public class MemoDataSource {
     public boolean insertMemo(Memo c) {
         boolean didSucceed = false;
         try {
-            Date d = Calendar.getInstance().getTime();
-            SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-            String formattedDate = df.format(d);
+
             ContentValues initialValues = new ContentValues();
 
-            initialValues.put("memoText", c.getMemoData());
-            initialValues.put("memoPriority", c.getMemoPriority());
-            initialValues.put("memoDate", formattedDate);
             initialValues.put("memoTitle", c.getMemoTitle());
+            initialValues.put("memoPriority", c.getMemoPriority());
+            initialValues.put("memoText", c.getMemoData());
+            initialValues.put("memoDate", c.getMemoDate());
 
 
             didSucceed = database.insertOrThrow("memo3", null, initialValues) > 0;
@@ -62,10 +60,13 @@ public class MemoDataSource {
             Long rowId = (long) c.getMemoID();
             ContentValues updateValues = new ContentValues();
 
-            updateValues.put("memoText", c.getMemoData());
+            updateValues.put("memoTitle", c.getMemoTitle());
             updateValues.put("memoPriority", c.getMemoPriority());
+            updateValues.put("memoText", c.getMemoData());
+            updateValues.put("memoDate", c.getMemoDate());
 
-            didSucceed = database.update("memo", updateValues, "_id=" + rowId, null) > 0;
+
+            didSucceed = database.update("memo3", updateValues, "_id=" + rowId, null) > 0;
         }
         catch (Exception e) {
             //Do nothing -will return false if there is an exception
@@ -76,7 +77,7 @@ public class MemoDataSource {
     public int getLastMemoID() {
         int lastId = -1;
         try {
-            String query = "Select MAX(_id) from memo";
+            String query = "Select MAX(_id) from memo3";
             Cursor cursor = database.rawQuery(query, null);
 
             cursor.moveToFirst();
@@ -92,7 +93,7 @@ public class MemoDataSource {
     public ArrayList<String> getMemoData() {
         ArrayList<String> memoDatas = new ArrayList<String>();
         try {
-            String query = "Select memoText from memo";
+            String query = "Select memoText from memo3";
             Cursor cursor = database.rawQuery(query, null);
 
             cursor.moveToFirst();
@@ -111,7 +112,8 @@ public class MemoDataSource {
     public ArrayList<Memo> getMemo(String sortField, String sortOrder) {
         ArrayList<Memo> memos = new ArrayList<Memo>();
         try {
-            String query = "SELECT  * FROM memo ORDER BY " + sortField + " " + sortOrder;
+            String query = "SELECT  * FROM memo3 " ;
+                    //ORDER BY " + sortField + " " + sortOrder;
 
             Cursor cursor = database.rawQuery(query, null);
 
@@ -120,9 +122,10 @@ public class MemoDataSource {
             while (!cursor.isAfterLast()) {
                 newMemo = new Memo();                                          //1
                 newMemo.setMemoID(cursor.getInt(0));
-                newMemo.setMemoData(cursor.getString(1));
+                newMemo.setMemoTitle(cursor.getString(1));
                 newMemo.setMemoPriority(cursor.getString(2));
-
+                newMemo.setMemoData(cursor.getString(3));
+                newMemo.setMemoDate(cursor.getString(4));
 
                 memos.add(newMemo);
                 cursor.moveToNext();
@@ -135,26 +138,29 @@ public class MemoDataSource {
         return memos;
     }
 
-    /*public boolean deleteContact(int contactId) {
+    public boolean deleteMemo(int memoID) {
         boolean didDelete = false;
         try {
-            didDelete = database.delete("contact", "_id=" + contactId, null) > 0;
+            didDelete = database.delete("memo3", "_id=" + memoID, null) > 0;
         }
         catch (Exception e) {
             //Do nothing -return value already set to false
         }
         return didDelete;
-    }*/
+    }
 
     public Memo getSpecificMemo(int memoID) {
         Memo memo = new Memo();
-        String query = "SELECT  * FROM contact WHERE _id =" + memoID;
+        String query = "SELECT  * FROM memo3 WHERE _id =" + memoID;
         Cursor cursor = database.rawQuery(query, null);
 
         if (cursor.moveToFirst()) {
             memo.setMemoID(cursor.getInt(0));
-            memo.setMemoData(cursor.getString(1));
+            memo.setMemoTitle(cursor.getString(1));
             memo.setMemoPriority(cursor.getString(2));
+            memo.setMemoData(cursor.getString(3));
+            memo.setMemoDate(cursor.getString(4));
+
 
             cursor.close();
         }

@@ -10,10 +10,10 @@
     <EditText
         android:id="@+id/editMemo"
         android:layout_width="match_parent"
-        android:layout_height="510dp"
+        android:layout_height="460dp"
         android:layout_below="@+id/toolbar"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textAutoCorrect"
         android:gravity="top|left"
         android:text="" />
 
