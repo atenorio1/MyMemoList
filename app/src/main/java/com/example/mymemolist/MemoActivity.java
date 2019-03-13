@@ -114,18 +114,13 @@ public class MemoActivity extends AppCompatActivity {
 
     }
     private void initTextChangedEvents() {
-        Date d = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-        String formattedDate = df.format(d);
+
 
         final EditText etMemo = (EditText) findViewById(R.id.editMemo);
-        final EditText etMemoTitle = findViewById(R.id.editMemoName);
         etMemo.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
                 currentMemo.setMemoData(etMemo.getText().toString());
-                currentMemo.setMemoTitle(etMemoTitle.getText().toString());
-                currentMemo.setMemoDate(formattedDate);
             }
 
             public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
@@ -136,7 +131,23 @@ public class MemoActivity extends AppCompatActivity {
                 //  Auto-generated method stub
             }
         });
+
+        final EditText etMemoTitle = (EditText) findViewById(R.id.editMemoName);
+        etMemoTitle.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {
+                currentMemo.setMemoTitle(etMemoTitle.getText().toString());
+            }
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+                //  Auto-generated method stub
+            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //  Auto-generated method stub
+            }
+        });
     }
+
+
     private void initSaveButton() {
 
 
@@ -145,6 +156,11 @@ public class MemoActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                Date d = Calendar.getInstance().getTime();
+                SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+                String formattedDate = df.format(d);
+                currentMemo.setMemoDate(formattedDate);
+
                 hideKeyboard();
                 boolean wasSuccessful = false;
                 MemoDataSource ds = new MemoDataSource(MemoActivity.this);

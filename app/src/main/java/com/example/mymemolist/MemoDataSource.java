@@ -63,7 +63,6 @@ public class MemoDataSource {
             updateValues.put("memoTitle", c.getMemoTitle());
             updateValues.put("memoPriority", c.getMemoPriority());
             updateValues.put("memoText", c.getMemoData());
-            updateValues.put("memoDate", c.getMemoDate());
 
 
             didSucceed = database.update("memo3", updateValues, "_id=" + rowId, null) > 0;
@@ -125,7 +124,7 @@ public class MemoDataSource {
                 newMemo.setMemoTitle(cursor.getString(1));
                 newMemo.setMemoPriority(cursor.getString(2));
                 newMemo.setMemoData(cursor.getString(3));
-                newMemo.setMemoDate(cursor.getString(4));
+                //newMemo.setMemoDate(cursor.getString(4));
 
                 memos.add(newMemo);
                 cursor.moveToNext();
@@ -159,7 +158,7 @@ public class MemoDataSource {
             memo.setMemoTitle(cursor.getString(1));
             memo.setMemoPriority(cursor.getString(2));
             memo.setMemoData(cursor.getString(3));
-            memo.setMemoDate(cursor.getString(4));
+            //memo.setMemoDate(cursor.getString(4));
 
 
             cursor.close();
