@@ -28,6 +28,8 @@ public class MemoListActivity extends AppCompatActivity {
         initSettingsButton();
         initAddButton();
         initDeleteButton();
+
+
     }
 
     // Method that initializes the add image button
@@ -59,7 +61,7 @@ public class MemoListActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        String sortBy = getSharedPreferences("MyMemoListPreferences", Context.MODE_PRIVATE).getString("sortfield", "memoPriority");
+        String sortBy = getSharedPreferences("MyMemoListPreferences", Context.MODE_PRIVATE).getString("sortfield", "memoTitle");
         String sortOrder = getSharedPreferences("MyMemoListPreferences", Context.MODE_PRIVATE).getString("sortorder", "DESC");
 
         MemoDataSource ds = new MemoDataSource(this);

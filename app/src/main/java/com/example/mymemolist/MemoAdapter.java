@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ArrayList;
 
 /**
@@ -17,6 +20,7 @@ import java.util.ArrayList;
  */
 
 public class MemoAdapter extends ArrayAdapter<Memo> {
+
 
     private ArrayList<Memo> items;
     private Context adapterContext;
@@ -39,17 +43,18 @@ public class MemoAdapter extends ArrayAdapter<Memo> {
                 v = vi.inflate(R.layout.list_item, null);
             }
 
-            TextView memoTitle = (TextView) v.findViewById(R.id.textMemoName);
-            TextView memoPriority = (TextView) v.findViewById(R.id.textPriority);
-            TextView memoPreview = (TextView) v.findViewById(R.id.textMemoPreview);
-            TextView memoDateCreated = (TextView) v.findViewById(R.id.textDateCreated);
-
+            TextView memeTitle = v.findViewById(R.id.textMemoName);
+            TextView memePriority = v.findViewById(R.id.textPriority);
+            TextView memeDateCreated = v.findViewById(R.id.textDateCreated);
+            TextView memePreview = v.findViewById(R.id.textMemoPreview);
 
             Button b = (Button) v.findViewById(R.id.buttonDeleteMemo);
-            memoTitle.setText(memo.getMemoTitle());
-            memoPriority.setText(memo.getMemoPriority());
-            memoPreview.setText(memo.getMemoData());
-            memoDateCreated.setText(memo.getMemoDate());
+
+            memeTitle.setText(memo.getMemoTitle());
+            memePriority.setText(memo.getMemoPriority());
+            memeDateCreated.setText(memo.getMemoDate());
+            memePreview.setText(memo.getMemoData());
+
 
             b.setVisibility(View.INVISIBLE);
 
