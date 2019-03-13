@@ -27,7 +27,7 @@ public class MemoListActivity extends AppCompatActivity {
         initListButton();
         initSettingsButton();
         initAddButton();
-        //initDeleteButton();
+        initDeleteButton();
     }
 
     // Method that initializes the add image button
@@ -100,8 +100,8 @@ public class MemoListActivity extends AppCompatActivity {
 
 
     }
-    /*private void initDeleteButton() {
-        final Button deleteButton = (Button) findViewById(R.id.buttonDeleteMemo);
+    private void initDeleteButton() {
+        final Button deleteButton = (Button) findViewById(R.id.buttonDelete);
         deleteButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (isDeleting) {
@@ -115,5 +115,5 @@ public class MemoListActivity extends AppCompatActivity {
                 }
             }
         });
-    }*/
+    }
 }
