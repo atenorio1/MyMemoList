@@ -12,6 +12,8 @@ import java.io.ByteArrayOutputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 
 public class MemoDataSource {
@@ -34,12 +36,19 @@ public class MemoDataSource {
     public boolean insertMemo(Memo c) {
         boolean didSucceed = false;
         try {
+            Date d = Calendar.getInstance().getTime();
+            SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+            String formattedDate = df.format(d);
             ContentValues initialValues = new ContentValues();
 
             initialValues.put("memoText", c.getMemoData());
+            initialValues.put("memoPriority", c.getMemoPriority());
+            initialValues.put("memoDate", formattedDate);
+            initialValues.put("memoTitle", c.getMemoTitle());
 
 
-            didSucceed = database.insert("memo", null, initialValues) > 0;
+            didSucceed = database.insertOrThrow("memo3", null, initialValues) > 0;
+
         }
         catch (Exception e) {
             //Do nothing -will return false if there is an exception
@@ -54,6 +63,7 @@ public class MemoDataSource {
             ContentValues updateValues = new ContentValues();
 
             updateValues.put("memoText", c.getMemoData());
+            updateValues.put("memoPriority", c.getMemoPriority());
 
             didSucceed = database.update("memo", updateValues, "_id=" + rowId, null) > 0;
         }
@@ -63,10 +73,10 @@ public class MemoDataSource {
         return didSucceed;
     }
 
-    /*public int getLastContactId() {
+    public int getLastMemoID() {
         int lastId = -1;
         try {
-            String query = "Select MAX(_id) from contact";
+            String query = "Select MAX(_id) from memo";
             Cursor cursor = database.rawQuery(query, null);
 
             cursor.moveToFirst();
@@ -79,61 +89,53 @@ public class MemoDataSource {
         return lastId;
     }
 
-    public ArrayList<String> getContactName() {
-        ArrayList<String> contactNames = new ArrayList<String>();
+    public ArrayList<String> getMemoData() {
+        ArrayList<String> memoDatas = new ArrayList<String>();
         try {
-            String query = "Select contactname from contact";
+            String query = "Select memoText from memo";
             Cursor cursor = database.rawQuery(query, null);
 
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
-                contactNames.add(cursor.getString(0));
+                memoDatas.add(cursor.getString(0));
                 cursor.moveToNext();
             }
             cursor.close();
         }
         catch (Exception e) {
-            contactNames = new ArrayList<String>();
+            memoDatas = new ArrayList<String>();
         }
-        return contactNames;
+        return memoDatas;
     }
 
-    public ArrayList<Contact> getContacts(String sortField, String sortOrder) {
-        ArrayList<Contact> contacts = new ArrayList<Contact>();
+    public ArrayList<Memo> getMemo(String sortField, String sortOrder) {
+        ArrayList<Memo> memos = new ArrayList<Memo>();
         try {
-            String query = "SELECT  * FROM contact ORDER BY " + sortField + " " + sortOrder;
+            String query = "SELECT  * FROM memo ORDER BY " + sortField + " " + sortOrder;
 
             Cursor cursor = database.rawQuery(query, null);
 
-            Contact newContact;
+            Memo newMemo;
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
-                newContact = new Contact();                                          //1
-                newContact.setContactID(cursor.getInt(0));
-                newContact.setContactName(cursor.getString(1));
-                newContact.setStreetAddress(cursor.getString(2));
-                newContact.setCity(cursor.getString(3));
-                newContact.setState(cursor.getString(4));
-                newContact.setZipCode(cursor.getString(5));
-                newContact.setPhoneNumber(cursor.getString(6));
-                newContact.setCellNumber(cursor.getString(7));
-                newContact.setEMail(cursor.getString(8));
-                Calendar calendar = Calendar.getInstance();                         //2
-                calendar.setTimeInMillis(Long.valueOf(cursor.getString(9)));
-                newContact.setBirthday(calendar);
+                newMemo = new Memo();                                          //1
+                newMemo.setMemoID(cursor.getInt(0));
+                newMemo.setMemoData(cursor.getString(1));
+                newMemo.setMemoPriority(cursor.getString(2));
 
-                contacts.add(newContact);
+
+                memos.add(newMemo);
                 cursor.moveToNext();
             }
             cursor.close();
         }
         catch (Exception e) {
-            contacts = new ArrayList<Contact>();
+            memos = new ArrayList<Memo>();
         }
-        return contacts;
+        return memos;
     }
 
-    public boolean deleteContact(int contactId) {
+    /*public boolean deleteContact(int contactId) {
         boolean didDelete = false;
         try {
             didDelete = database.delete("contact", "_id=" + contactId, null) > 0;
@@ -142,36 +144,21 @@ public class MemoDataSource {
             //Do nothing -return value already set to false
         }
         return didDelete;
-    }
+    }*/
 
-    public Contact getSpecificContact(int contactId) {
-        Contact contact = new Contact();
-        String query = "SELECT  * FROM contact WHERE _id =" + contactId;
+    public Memo getSpecificMemo(int memoID) {
+        Memo memo = new Memo();
+        String query = "SELECT  * FROM contact WHERE _id =" + memoID;
         Cursor cursor = database.rawQuery(query, null);
 
         if (cursor.moveToFirst()) {
-            contact.setContactID(cursor.getInt(0));
-            contact.setContactName(cursor.getString(1));
-            contact.setStreetAddress(cursor.getString(2));
-            contact.setCity(cursor.getString(3));
-            contact.setState(cursor.getString(4));
-            contact.setZipCode(cursor.getString(5));
-            contact.setPhoneNumber(cursor.getString(6));
-            contact.setCellNumber(cursor.getString(7));
-            contact.setEMail(cursor.getString(8));
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(Long.valueOf(cursor.getString(9)));
-            contact.setBirthday(calendar);
-            byte[] photo = cursor.getBlob(10);
-            if (photo != null) {
-                ByteArrayInputStream imageStream = new ByteArrayInputStream(photo);
-                Bitmap thePicture= BitmapFactory.decodeStream(imageStream);
-                contact.setPicture(thePicture);
-            }
+            memo.setMemoID(cursor.getInt(0));
+            memo.setMemoData(cursor.getString(1));
+            memo.setMemoPriority(cursor.getString(2));
 
             cursor.close();
         }
-        return contact;
-    }*/
+        return memo;
+    }
 
 }
