@@ -14,6 +14,7 @@
         android:layout_below="@+id/toolbar"
         android:ems="10"
         android:inputType="textPersonName"
+        android:gravity="top|left"
         android:text="" />
 
     <RelativeLayout
@@ -57,9 +58,33 @@
         android:layout_marginTop="0dp"
         android:background="@color/colorPrimaryDark">
 
+        <TextView
+            android:id="@+id/textTitle"
+            android:textColor="#ffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="34dp"
+            android:layout_marginLeft="193dp"
+            android:layout_marginTop="1dp"
+            android:text="Title:"
+            android:textSize="32dp" />
+
+        <EditText
+            android:id="@+id/editMemoName"
+            android:textColor="#ffffff"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textTitle"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="13dp"
+            android:layout_marginLeft="154dp"
+            android:layout_marginTop="-5dp" />
+
         <RadioGroup
             android:id="@+id/radioGroupSortByPriority"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="160dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 

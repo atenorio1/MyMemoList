@@ -111,10 +111,12 @@ public class MemoActivity extends AppCompatActivity {
     }
     private void initTextChangedEvents() {
         final EditText etMemo = (EditText) findViewById(R.id.editMemo);
+        final EditText etMemoTitle = findViewById(R.id.editMemoName);
         etMemo.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
                 currentMemo.setMemoData(etMemo.getText().toString());
+                currentMemo.setMemoTitle(etMemoTitle.getText().toString());
             }
 
             public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {

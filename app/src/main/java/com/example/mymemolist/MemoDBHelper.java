@@ -6,14 +6,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MemoDBHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "Memo2.db";
+    private static final String DATABASE_NAME = "Memo3.db";
     private static final int DATABASE_VERSION = 2;
 
     // Database creation sql statement
     private static final String CREATE_TABLE_MEMO =
-            "create table memo2" +
+            "create table memo3" +
                     " (_id integer primary key autoincrement, "
-                    + "memoText text, memoPriority text, memoDate date);";
+                    + "memoText text, memoPriority text, memoDate date, memoTitle text);";
 
     public MemoDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
