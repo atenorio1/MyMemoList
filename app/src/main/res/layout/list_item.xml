@@ -46,8 +46,8 @@
         android:ellipsize="end"
         android:textSize="15sp"
         android:text="Memo Preview" />
-
-
+    //textDateCreated
+    //textMemoPreview
     <TextView
         android:id="@+id/textDateCreated"
         android:layout_width="wrap_content"

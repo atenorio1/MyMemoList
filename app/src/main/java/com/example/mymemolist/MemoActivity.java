@@ -2,6 +2,7 @@ package com.example.mymemolist;
 
 import android.content.Context;
 import android.content.Intent;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -26,7 +27,7 @@ import java.util.Date;
 
 public class MemoActivity extends AppCompatActivity {
     private Memo currentMemo;
-    String rbValue;
+    private String rbValue;
 
 
     @Override
@@ -100,17 +101,28 @@ public class MemoActivity extends AppCompatActivity {
             Toast.makeText(this, "Load Memo Failed", Toast.LENGTH_LONG).show();
         }
 
-        EditText editMemo = (EditText) findViewById(R.id.editMemo);
-        editMemo.setText(currentMemo.getMemoData());
-        /*String chkMemo = currentMemo.getMemoPriority();
-        if(chkMemo == "low"){
+        EditText eMemo = (EditText) findViewById(R.id.editMemo);
+        EditText eName = (EditText) findViewById(R.id.editMemoName);
+        TextView tvMemoDate = findViewById(R.id.textDate);
+
+        eMemo.setText(currentMemo.getMemoData());
+        eName.setText(currentMemo.getMemoTitle());
+        tvMemoDate.setText(currentMemo.getMemoDate());
+
+        String chkMemo = currentMemo.getMemoPriority();
+
+        RadioButton rbLow = findViewById(R.id.radioLow);
+        RadioButton rbMed = findViewById(R.id.radioMedium);
+        RadioButton rbHigh = findViewById(R.id.radioHigh);
+
+        if(chkMemo.equals("1")){
             rbLow.setChecked(true);
-        }else if(chkMemo == "medium"){
+        }else if(chkMemo.equals("2")){
             rbMed.setChecked(true);
         }else{
             rbHigh.setChecked(true);
 
-        }*/
+        }
 
     }
     private void initTextChangedEvents() {
@@ -221,18 +233,18 @@ public class MemoActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup arg0, int arg1) {
 
                 if (rbLow.isChecked()) {
-                    rbValue= "low";
+                    rbValue= "1";
                     currentMemo.setMemoPriority(rbValue);
                 }
                 else if (rbMed.isChecked()) {
-                    rbValue= "medium";
+                    rbValue= "2";
                     currentMemo.setMemoPriority(rbValue);
                 }
                 else if (rbHigh.isChecked()){
-                    rbValue= "high";
+                    rbValue= "3";
                     currentMemo.setMemoPriority(rbValue);
                 }else {
-                    rbValue = "low";
+                    rbValue = "1";
                     currentMemo.setMemoPriority(rbValue);
                 }
 
