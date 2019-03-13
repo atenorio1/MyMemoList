@@ -44,7 +44,7 @@
                 android:layout_marginStart="45dp"
                 android:layout_marginLeft="45dp"
                 android:layout_marginTop="10dp"
-                android:layout_below="@id/textMemoSort" >
+                android:layout_below="@+id/textMemoSort" >
 
                 <RadioButton
                     android:id="@+id/radioName"
@@ -77,7 +77,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="25dp"
-                android:layout_below="@id/radioGroupSortBy"
+                android:layout_below="@+id/radioGroupSortBy"
                 android:text="Order By"
                 android:textSize="22sp" />
 
@@ -90,7 +90,7 @@
                 android:layout_marginStart="45dp"
                 android:layout_marginLeft="45dp"
                 android:layout_marginTop="10dp"
-                android:layout_below="@id/textMemoOrder" >
+                android:layout_below="@+id/textMemoOrder" >
 
                 <RadioButton
                     android:id="@+id/radioAsc"

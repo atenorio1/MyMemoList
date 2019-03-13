@@ -41,17 +41,17 @@ public class MemoSettingsActivity extends AppCompatActivity {
 
     // Method that gets values stored in the sharedPreferences file to set RadioButtons to user values when you open this activity
     private void initSettings() {
-        String sortBy = getSharedPreferences("MyMemoListPreferences", Context.MODE_PRIVATE).getString("sortfield", "datecreated");
+        String sortBy = getSharedPreferences("MyMemoListPreferences", Context.MODE_PRIVATE).getString("sortfield", "memoDate");
         String sortOrder = getSharedPreferences("MyMemoListPreferences", Context.MODE_PRIVATE).getString("sortorder", "DESC");
 
         RadioButton rbName = findViewById(R.id.radioName);
         RadioButton rbDateCreated = findViewById(R.id.radioDateCreated);
         RadioButton rbPriority = findViewById(R.id.radioPriority);
 
-        if (sortBy.equalsIgnoreCase("memoname"))
+        if (sortBy.equalsIgnoreCase("memoTitle"))
             rbName.setChecked(true);
 
-        else if (sortBy.equalsIgnoreCase("datecreated"))
+        else if (sortBy.equalsIgnoreCase("memoDate"))
             rbDateCreated.setChecked(true);
 
         else
@@ -75,13 +75,13 @@ public class MemoSettingsActivity extends AppCompatActivity {
             RadioButton rbDateCreated = findViewById(R.id.radioDateCreated);
 
             if (rbName.isChecked())
-                getSharedPreferences("MyMemoListPreferences", Context.MODE_PRIVATE).edit().putString("sortfield", "memoname").commit();
+                getSharedPreferences("MyMemoListPreferences", Context.MODE_PRIVATE).edit().putString("sortfield", "memoTitle").commit();
 
             else if (rbDateCreated.isChecked())
-                getSharedPreferences("MyMemoListPreferences", Context.MODE_PRIVATE).edit().putString("sortfield", "datecreated").commit();
+                getSharedPreferences("MyMemoListPreferences", Context.MODE_PRIVATE).edit().putString("sortfield", "memoDate").commit();
 
             else
-                getSharedPreferences("MyMemoListPreferences", Context.MODE_PRIVATE).edit().putString("sortfield", "priority").commit();
+                getSharedPreferences("MyMemoListPreferences", Context.MODE_PRIVATE).edit().putString("sortfield", "memoPriority").commit();
         });
     }
 

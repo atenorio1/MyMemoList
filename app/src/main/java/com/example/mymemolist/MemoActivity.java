@@ -19,6 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 
 public class MemoActivity extends AppCompatActivity {
     private Memo currentMemo;
@@ -110,6 +114,10 @@ public class MemoActivity extends AppCompatActivity {
 
     }
     private void initTextChangedEvents() {
+        Date d = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String formattedDate = df.format(d);
+
         final EditText etMemo = (EditText) findViewById(R.id.editMemo);
         final EditText etMemoTitle = findViewById(R.id.editMemoName);
         etMemo.addTextChangedListener(new TextWatcher() {
@@ -117,6 +125,7 @@ public class MemoActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 currentMemo.setMemoData(etMemo.getText().toString());
                 currentMemo.setMemoTitle(etMemoTitle.getText().toString());
+                currentMemo.setMemoDate(formattedDate);
             }
 
             public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {

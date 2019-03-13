@@ -16,27 +16,21 @@
         android:layout_marginTop="15dp"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:text="Memo Name" />
+        android:textColor="#808080"
+        android:text="Memo Name"
+        />
 
     <TextView
         android:id="@+id/textPriority"
+        android:textColor="#ff0000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
         android:layout_below="@id/textMemoName"
-        android:text="Priority:" />
-
-    <TextView
-        android:id="@+id/textPriorityLevel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_below="@id/textMemoName"
-        android:layout_toRightOf="@id/textPriority"
-        android:text="Level" />
+        android:textSize="15sp"
+        android:text="Priority" />
 
     <TextView
         android:id="@+id/textMemoPreview"
@@ -47,66 +41,39 @@
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:layout_below="@id/textPriority"
-        android:maxLines="3"
-        android:minLines="3"
+        android:maxLines="2"
+        android:minLines="2"
         android:ellipsize="end"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:text="Memo Preview" />
 
-    <TextView
-        android:id="@+id/textCreated"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_below="@id/textMemoPreview"
-        android:text="Created:" />
 
     <TextView
         android:id="@+id/textDateCreated"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp"
+        android:textSize="15sp"
+        android:layout_marginLeft="20dp"
         android:layout_below="@id/textMemoPreview"
-        android:layout_toRightOf="@id/textCreated"
         android:text="Date Created" />
 
-    <TextView
-        android:id="@+id/textModified"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_below="@id/textMemoPreview"
-        android:layout_toRightOf="@id/textDateCreated"
-        android:text="Modified:" />
 
-    <TextView
-        android:id="@+id/textDateModified"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_below="@id/textMemoPreview"
-        android:layout_toRightOf="@id/textModified"
-        android:text="Date Modified" />
-
-    <CheckBox
-        android:id="@+id/checkboxDelete"
+    <Button
+        android:text="Delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignTop="@id/textMemoName"
-        android:layout_alignBottom="@id/textPriority"
-        android:visibility="invisible"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:textColor="#ffb2b2"
+        android:background="#ffffff"
+        android:visibility="visible"
         android:focusable="false"
-        android:focusableInTouchMode="false" />
-
+        android:focusableInTouchMode="false"
+        android:layout_alignTop="@+id/textMemoName"
+        android:layout_alignBottom="@+id/textPriority"
+        android:id="@+id/buttonDeleteMemo" />
 </RelativeLayout>
